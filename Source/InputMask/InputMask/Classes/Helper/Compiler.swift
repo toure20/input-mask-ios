@@ -179,7 +179,17 @@ private extension Compiler {
                     fixed: fixed,
                     lastCharacter: char
                 )
-            
+            case "*":
+                if "\\" == lastCharacter { // escaped «\» character
+                    break
+                }
+                return ValueState(
+                    child: try self.compile(
+                        string.truncateFirst(),
+                        valuable: true,
+                        fixed: false,
+                        lastCharacter: char),
+                    type: ValueState.StateType.custom(char: "*", characterSet: .alphanumerics))
             default: break
         }
         

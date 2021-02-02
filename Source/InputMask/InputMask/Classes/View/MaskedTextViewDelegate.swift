@@ -243,7 +243,6 @@ open class MaskedTextViewDelegate: NSObject, UITextViewDelegate {
         }
         
         notifyOnMaskedTextChangedListeners(forTextView: textView, result: result)
-        let _ = self.listener?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string)
         return false
     }
     
